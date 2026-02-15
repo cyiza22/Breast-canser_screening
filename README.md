@@ -4,8 +4,6 @@ An AI-powered mobile screening and awareness system that facilitates early breas
 The platform provides accessible preliminary risk assessment, culturally localized health education, and seamless integration with Community Health Worker (CHW) networks.
 
 
----
-
 ## Table of Contents
 
 - [Description](#description)

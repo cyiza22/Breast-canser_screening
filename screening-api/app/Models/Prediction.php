@@ -8,6 +8,12 @@ class Prediction extends Model
 {
     protected $fillable = [
         'user_id',
-        'result'
+        'type',     // 'questionnaire' or 'image'
+        'result',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

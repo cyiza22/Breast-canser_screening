@@ -4,8 +4,7 @@ An AI-powered mobile screening and awareness system that facilitates early breas
 
 
 ## video links
-video link part1: https://www.loom.com/share/479ca405c7224ecfab56dc2ac121e7e6
-video link part2: https://www.loom.com/share/c6129dd03c9443069ec7c627174fdd17
+video link: https://www.loom.com/share/132829e835454f27907d26ef962464fa
 
 ## Table of Contents
 

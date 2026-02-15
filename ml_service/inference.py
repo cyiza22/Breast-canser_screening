@@ -3,7 +3,7 @@ import numpy as np
 from PIL import Image
 import io
 
-model = tf.keras.models.load_model("saved_models/breast_model.h5")
+model = tf.keras.models.load_model("saved_models/breast_cnn_model.h5")
 
 def preprocess(image_bytes):
     img = Image.open(io.BytesIO(image_bytes)).resize((224,224))
@@ -12,5 +12,8 @@ def preprocess(image_bytes):
 
 def predict_image(image_bytes):
     img = preprocess(image_bytes)
-    pred = model.predict(img)[0][0]
-    return {"risk_score": float(pred)}
+    pred = model.predict(img)[0]
+    return {
+        "class": int(np.argmax(pred)),
+        "confidence": float(np.max(pred))
+    }

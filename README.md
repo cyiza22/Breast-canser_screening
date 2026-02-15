@@ -171,39 +171,6 @@ The API will be available at `http://localhost:8000/api`.
 | POST   | `/api/assist`  | Sanctum  | Submit image + message for AI  |
 | GET    | `/api/health`  | Sanctum  | System health check            |
 
----
-
-```
-
-
-
-### App Screenshots
-
-| Home Screen | Risk Assessment | Chat Assistant | Results |
-|:-----------:|:---------------:|:--------------:|:-------:|
-| *(screenshot)* | *(screenshot)* | *(screenshot)* | *(screenshot)* |
-
-> Add screenshots to a `/docs/screenshots/` folder and update the image paths above:
-> ```markdown
-> ![Home Screen](docs/screenshots/home.png)
-> ```
-
-### System Architecture
-
-```
-┌──────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│  React Native│────▶│  Laravel API     │────▶│  MySQL Database  │
-│  Mobile App  │     │  (Port 8000)     │     │                  │
-└──────┬───────┘     └────────┬─────────┘     └──────────────────┘
-       │                      │
-       │ (offline)            │ HTTP
-       ▼                      ▼
-┌──────────────┐     ┌──────────────────┐
-│  TFLite Model│     │  FastAPI ML Svc  │
-│  (On-Device) │     │  (Port 8001)     │
-└──────────────┘     └──────────────────┘
-```
-
 Kaggledataset:
 https://www.kaggle.com/datasets/anaselmasry/datasetbusiwithgt
 

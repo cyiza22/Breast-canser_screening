@@ -4,13 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Prediction;
 
 class ScreeningController extends Controller
 {
-    /**
-     * Submit clinical questionnaire for risk assessment.
-     */
     public function assess(Request $request)
     {
         $validated = $request->validate([
@@ -25,46 +23,78 @@ class ScreeningController extends Controller
             'breast_pain'      => 'required|in:yes,no',
         ]);
 
-        // Call the FastAPI ML service
-        $mlServiceUrl = env('ML_SERVICE_URL', 'http://localhost:8001');
+        $cacheKey = 'assess_' . md5(json_encode($validated));
 
-        try {
+        $result = Cache::remember($cacheKey, 60 * 60 * 24, function () use ($validated) {
+            $mlServiceUrl = env('ML_SERVICE_URL', 'http://localhost:8001');
             $response = Http::timeout(30)->post("{$mlServiceUrl}/assess", $validated);
-            $result = $response->json();
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'ML service unavailable. Please try again later.',
-            ], 503);
-        }
 
-        // Store the prediction
+            if (!$response->successful()) {
+                throw new \Exception('ML error: ' . $response->body());
+            }
+            return $response->json();
+        });
+
         Prediction::create([
             'user_id' => auth()->id(),
             'type'    => 'questionnaire',
             'result'  => json_encode($result),
         ]);
 
+        Cache::forget("history_" . auth()->id());
+
         return response()->json($result);
     }
 
-    /**
-     * Get screening history for the authenticated user.
-     */
     public function history(Request $request)
     {
-        $predictions = Prediction::where('user_id', auth()->id())
-            ->orderBy('created_at', 'desc')
-            ->limit(20)
-            ->get()
-            ->map(function ($p) {
-                return [
-                    'id'         => $p->id,
-                    'type'       => $p->type ?? 'image',
-                    'result'     => json_decode($p->result, true),
-                    'created_at' => $p->created_at->toDateTimeString(),
-                ];
-            });
+        $userId = auth()->id();
+
+        $predictions = Cache::remember("history_{$userId}", 30, function () use ($userId) {
+            return Prediction::where('user_id', $userId)
+                ->orderBy('created_at', 'desc')
+                ->limit(50)
+                ->get()
+                ->map(function ($p) {
+                    return [
+                        'id'         => $p->id,
+                        'type'       => $p->type ?? 'image',
+                        'result'     => json_decode($p->result, true),
+                        'created_at' => $p->created_at->toDateTimeString(),
+                    ];
+                });
+        });
 
         return response()->json(['screenings' => $predictions]);
+    }
+
+    // Delete a single screening
+    public function destroy(Request $request, $id)
+    {
+        $prediction = Prediction::where('id', $id)
+            ->where('user_id', auth()->id())
+            ->first();
+
+        if (!$prediction) {
+            return response()->json(['message' => 'Screening not found.'], 404);
+        }
+
+        $prediction->delete();
+        Cache::forget("history_" . auth()->id());
+
+        return response()->json(['message' => 'Screening deleted.']);
+    }
+
+    // Clear all history
+    public function clearAll(Request $request)
+    {
+        $count = Prediction::where('user_id', auth()->id())->count();
+        Prediction::where('user_id', auth()->id())->delete();
+        Cache::forget("history_" . auth()->id());
+
+        return response()->json([
+            'message' => "{$count} screening(s) deleted.",
+            'count'   => $count,
+        ]);
     }
 }

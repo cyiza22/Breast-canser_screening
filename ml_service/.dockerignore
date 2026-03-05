@@ -1,0 +1,8 @@
+__pycache__
+*.pyc
+.venv
+saved_models/tfjs_model/
+saved_models/model.tflite
+convert_to_tfjs.py
+train_model.ipynb
+.git

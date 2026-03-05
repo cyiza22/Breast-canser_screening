@@ -14,9 +14,14 @@ CLASS_NAMES = {
 
 
 def preprocess(image_bytes):
-    """Resize and normalize image for EfficientNetB0."""
+    """Resize image for EfficientNetB0.
+    
+    IMPORTANT: Do NOT normalize to [0,1].
+    EfficientNetB0 has its own internal preprocessing layer
+    and expects raw [0, 255] pixel values.
+    """
     img = Image.open(io.BytesIO(image_bytes)).convert("RGB").resize((224, 224))
-    img = np.array(img) / 255.0
+    img = np.array(img, dtype=np.float32)  # keep [0, 255] range
     return np.expand_dims(img, 0)
 
 

@@ -30,8 +30,9 @@ class ChatService
                 'contrôler mes seins', 'toucher mes seins', 'examen à la maison',
                 'comment examiner', 'étapes examen',
                 // Kinyarwanda
-                'kwisuzuma', 'gusuzuma amabere', 'gusuzuma ibere',
-                'kwigenzura', 'gupima amabere', 'gukora isuzuma',
+                'kwisuzuma', 'gusuzuma amabere', 'gusuzuma ibere', 'nisuzume nte', 'kwisuzuma buri kwezi',
+                'kwigenzura', 'gupima amabere', 'gukora isuzuma', 'kwisuzuma', "kanseri y'ibere", "kanseri y'amabere",
+                'kwisuzuma mu ndorerwamo', 'guhindura ibara', 'kwisuzuma uryamye', 'nakisuzuma', 'nisuzuma', 'kwireba'
             ],
             'response' => [
                 'en' => "How to do a breast self-exam:\n\n1. LOOK — Stand in front of a mirror with arms at your sides. Look for changes in size, shape, skin dimpling, or nipple changes. Raise your arms and look again.\n\n2. FEEL (standing) — Use the pads of your three middle fingers. Press in small circles covering the entire breast, from collarbone to below the breast, and from armpit to center of chest. Use light, medium, and firm pressure.\n\n3. FEEL (lying down) — Lie down with a pillow under your right shoulder. Use your left hand to examine your right breast using the same circular motion. Switch sides.\n\n4. CHECK NIPPLES — Gently squeeze each nipple to check for discharge.\n\nDo this once a month, ideally a few days after your period ends when breasts are least tender. If you notice anything unusual, see a health professional — do not wait.",
@@ -88,8 +89,8 @@ class ChatService
                 // Kinyarwanda
                 'ibimenyetso', 'kumenya', 'ububabare', 'ububabare bw\'amabere',
                 'igikuba', 'ubukomere', 'kubyimba', 'impinduka',
-                'amaraso', 'ibisohoka', 'umumero',
-                'inkokora', 'kurwara',
+                'amaraso', 'ibisohoka', 'umumero', 'ibibyimba',
+                'inkokora', 'kurwara', 'kuribwa', 'gukomera', 'gukura', 'guhindura ibara',
             ],
             'response' => [
                 'en' => "Warning signs of breast cancer:\n\n• A new lump or hard knot in the breast or underarm area\n• Thickening or swelling in part of the breast\n• Change in breast size or shape\n• Skin dimpling or puckering (looks like orange peel)\n• Nipple turning inward (retraction)\n• Nipple discharge other than breast milk, especially if bloody\n• Redness, dryness, flaking, or scaling skin on breast or nipple\n• Persistent pain in one specific area of the breast\n• Itching, warmth, or redness that doesn't go away\n• Swollen lymph nodes under the arm or near the collarbone\n\nImportant: Many of these changes can also be caused by conditions that are NOT cancer (like cysts, infections, or hormonal changes). But any new or unusual change should be checked by a health professional to be safe.",
@@ -189,9 +190,9 @@ class ChatService
                 'kumenya kare', 'gusura muganga',
             ],
             'response' => [
-                'en' => "Breast cancer screening recommendations:\n\n• Ages 20–39: Monthly self-exam. Clinical breast exam by a professional every 1–3 years.\n• Ages 40–49: Monthly self-exam. Annual clinical exam. Discuss starting mammography with your doctor.\n• Ages 50+: Monthly self-exam. Annual mammogram where available. Annual clinical exam.\n\nTypes of screening:\n• Self-exam — You check your own breasts monthly at home. Free and always available.\n• Clinical breast exam (CBE) — A trained health worker examines your breasts by hand.\n• Ultrasound — Uses sound waves to create images. Good for dense breasts. More available than mammography.\n• Mammogram — X-ray of the breast. Gold standard for detection but requires specialized equipment.\n• MRI — Used for very high-risk women. Most detailed but expensive.\n• Biopsy — If something suspicious is found, a small tissue sample is taken and examined.\n\nIn areas where mammography is not available, clinical breast exams and ultrasound are valuable alternatives. The most important thing is to be screened regularly by whatever method is accessible to you.",
-                'fr' => "Recommandations de dépistage :\n\n• 20–39 ans : Auto-examen mensuel. Examen clinique tous les 1 à 3 ans.\n• 40–49 ans : Auto-examen mensuel. Examen clinique annuel. Discutez de la mammographie.\n• 50+ ans : Auto-examen mensuel. Mammographie annuelle si disponible.\n\nTypes de dépistage :\n• Auto-examen — Vérifiez vos seins chaque mois à la maison\n• Examen clinique — Un professionnel examine vos seins\n• Échographie — Bonne alternative quand la mammographie n'est pas disponible\n• Mammographie — Référence, mais nécessite un équipement spécialisé\n• IRM — Pour les femmes à très haut risque\n• Biopsie — Si quelque chose de suspect est trouvé, un échantillon est prélevé\n\nLe plus important est de se faire dépister régulièrement par la méthode accessible.",
-                'rw' => "Amabwiriza yo gusuzumwa kanseri y'amabere:\n\n• Imyaka 20–39: Kwisuzuma buri kwezi. Muganga buri myaka 1–3.\n• Imyaka 40–49: Kwisuzuma buri kwezi. Muganga buri mwaka.\n• Imyaka 50+: Kwisuzuma buri kwezi. Mammografi buri mwaka niba iboneka.\n\nUburyo bwo gusuzumwa:\n• Kwisuzuma — Ugasuzuma amabere yawe buri kwezi mu rugo\n• Isuzuma rya muganga — Umuganga asuzuma amabere yawe n'intoki\n• Echografi — Ikoresha imivumba y'amajwi. Ni uburyo bwiza iyo mammografi idahari\n• Mammografi — Ifoto y'amabere. Ni uburyo bwiza cyane ariko busaba ibikoresho bidasanzwe\n• Biopsiya — Niba hari ikintu gishidikanywaho, bafata agace gato bakagenzura\n\nIkintu cy'ingenzi ni ugusuzumwa buri gihe ukoresheje uburyo uboneka.",
+                'en' => "Breast cancer screening recommendations:\n\n• Ages 20-39: Monthly self-exam. Clinical breast exam by a professional every 1–3 years.\n• Ages 40–49: Monthly self-exam. Annual clinical exam. Discuss starting mammography with your doctor.\n• Ages 50+: Monthly self-exam. Annual mammogram where available. Annual clinical exam.\n\nTypes of screening:\n• Self-exam — You check your own breasts monthly at home. Free and always available.\n• Clinical breast exam (CBE) — A trained health worker examines your breasts by hand.\n• Ultrasound — Uses sound waves to create images. Good for dense breasts. More available than mammography.\n• Mammogram — X-ray of the breast. Gold standard for detection but requires specialized equipment.\n• MRI — Used for very high-risk women. Most detailed but expensive.\n• Biopsy — If something suspicious is found, a small tissue sample is taken and examined.\n\nIn areas where mammography is not available, clinical breast exams and ultrasound are valuable alternatives. The most important thing is to be screened regularly by whatever method is accessible to you.",
+                'fr' => "Recommandations de dépistage :\n\n• 20-39 ans : Auto-examen mensuel. Examen clinique tous les 1 à 3 ans.\n• 40–49 ans : Auto-examen mensuel. Examen clinique annuel. Discutez de la mammographie.\n• 50+ ans : Auto-examen mensuel. Mammographie annuelle si disponible.\n\nTypes de dépistage :\n• Auto-examen — Vérifiez vos seins chaque mois à la maison\n• Examen clinique — Un professionnel examine vos seins\n• Échographie — Bonne alternative quand la mammographie n'est pas disponible\n• Mammographie — Référence, mais nécessite un équipement spécialisé\n• IRM — Pour les femmes à très haut risque\n• Biopsie — Si quelque chose de suspect est trouvé, un échantillon est prélevé\n\nLe plus important est de se faire dépister régulièrement par la méthode accessible.",
+                'rw' => "Amabwiriza yo gusuzumwa kanseri y'amabere:\n\n• Imyaka 20-39: Kwisuzuma buri kwezi. Muganga buri myaka 1–3.\n• Imyaka 40–49: Kwisuzuma buri kwezi. Muganga buri mwaka.\n• Imyaka 50+: Kwisuzuma buri kwezi. Mammografi buri mwaka niba iboneka.\n\nUburyo bwo gusuzumwa:\n• Kwisuzuma — Ugasuzuma amabere yawe buri kwezi mu rugo\n• Isuzuma rya muganga — Umuganga asuzuma amabere yawe n'intoki\n• Echografi — Ikoresha imivumba y'amajwi. Ni uburyo bwiza iyo mammografi idahari\n• Mammografi — Ifoto y'amabere. Ni uburyo bwiza cyane ariko busaba ibikoresho bidasanzwe\n• Biopsiya — Niba hari ikintu gishidikanywaho, bafata agace gato bakagenzura\n\nIkintu cy'ingenzi ni ugusuzumwa buri gihe ukoresheje uburyo uboneka.",
             ],
         ],
 
@@ -234,7 +235,7 @@ class ChatService
                 'rémission', 'récupération', 'effets secondaires',
                 'coût', 'espoir', 'mortel',
                 // Kinyarwanda
-                'kuvura', 'gukira', 'ubuvuzi', 'imiti',
+                'kuvura', 'gukira', 'ubuvuzi', 'imiti', 'nakira', 'nivuje',
                 'kubaga', 'kubagwa', 'gukira kanseri',
                 'chimiotherapi', 'radiotherapi',
                 'ikiciro', 'ibyiciro', 'gukwira',
@@ -351,8 +352,8 @@ class ChatService
                 'enceinte', 'grossesse', 'bébé', 'nourrisson',
                 'nourrir', 'post-partum', 'fertilité',
                 // Kinyarwanda
-                'konsa', 'gusama', 'amata y\'umubyeyi',
-                'imbanyi', 'gutwita', 'umwana',
+                'konsa', 'gusama', 'amata y\'umubyeyi', 'wakonsa ufite kanseri',
+                'imbanyi', 'gutwita', 'umwana', 'wakonsa', 'nakonsa',
                 'kubyara', 'nyuma yo kubyara',
             ],
             'response' => [
@@ -461,12 +462,52 @@ class ChatService
 
         // Kinyarwanda indicators
         $rwWords = [
-            'muraho', 'amakuru', 'ndashaka', 'ubuzima', 'amabere', 'kanseri',
-            'gusuzuma', 'kwisuzuma', 'ni iki', 'niki', 'ese', 'mfasha',
-            'muganga', 'umubiri', 'ibyago', 'ibimenyetso', 'bite', 'komeza',
-            'konsa', 'gukira', 'kuvura', 'ibinyoma', 'ukuri', 'ibitaro',
-            'ivuriro', 'ubufasha', 'gusobanura', 'ububabare', 'imiti',
-            'umwana', 'umubyeyi', 'imvura', 'kwirinda', 'gupima',
+            // Greetings & common phrases
+            'muraho', 'amakuru', 'mwiriwe', 'bite', 'ndashaka', 'mfasha',
+            'mfashe', 'ese', 'ni iki', 'niki', 'numvise', 'abantu bavuga',
+
+            // Body / health general
+            'ubuzima', 'umubiri', 'muganga', 'kwa muganga', 'gusura muganga',
+            'ivuriro', 'ibitaro', 'ikigo nderabuzima', 'ubufasha',
+
+            // Breast-specific
+            'amabere', 'ibere', 'kanseri', "kanseri y'amabere", "kanseri y'ibere",
+
+            // Self-exam
+            'gusuzuma', 'kwisuzuma', 'gusuzumwa', 'kwigenzura', 'kugenzurwa',
+            'isuzuma', 'igenzura', 'gupima', 'gupimwa', 'nakisuzuma', 'nisuzuma',
+            'kwisuzuma buri kwezi', 'kwireba', 'gukora isuzuma',
+
+            // Symptoms
+            'ibimenyetso', 'ububabare', 'igikuba', 'ubukomere', 'kubyimba',
+            'impinduka', 'amaraso', 'ibisohoka', 'umumero', 'ibibyimba',
+            'inkokora', 'kurwara', 'kuribwa', 'gukomera', 'guhindura ibara',
+
+            // Risk & prevention
+            'ibyago', 'impamvu', 'kwirinda', 'gukingira', 'kugabanya',
+            'umuryango', 'amateka', 'imyitozo', 'ibiro', 'inzoga',
+
+            // Screening & diagnosis
+            'mammografi', 'echografi', 'kumenya', 'kumenya kare', 'koherezwa',
+
+            // Treatment
+            'kuvura', 'gukira', 'ubuvuzi', 'imiti', 'kubaga', 'kubagwa',
+            'chimiotherapi', 'radiotherapi', 'ikiciro', 'ibyiciro', 'ikizere',
+            'gupfa', 'nakira',
+
+            // What is cancer
+            'ikibyimba', 'ubwoko', 'gusobanura', 'sobanura',
+
+            // Getting help
+            'umujyanama', 'abajyanama', 'mituweli', 'ubwishingizi',
+
+            // Breastfeeding
+            'konsa', 'gusama', 'imbanyi', 'gutwita', 'umwana', 'umubyeyi',
+            'wakonsa', 'nakonsa', 'kubyara', 'imvura',
+
+            // Myths
+            'ibinyoma', 'ukuri', 'kwandura', 'abagabo', 'imiti gakondo',
+            'umuvuzi', 'komeza',
         ];
         foreach ($rwWords as $w) {
             if (str_contains($lower, $w)) return 'rw';
@@ -474,12 +515,44 @@ class ChatService
 
         // French indicators
         $frWords = [
-            'bonjour', 'bonsoir', 'salut', 'comment', "qu'est", 'je veux',
-            "j'ai", 'cancer du sein', 'aidez', "s'il vous", 'merci',
-            'dépistage', 'symptômes', 'examen', 'pouvez', 'est-ce que',
-            'les seins', 'santé', 'traitement', 'guérir', 'facteurs',
-            'allaitement', 'chirurgie', 'médecin', 'hôpital',
-            'risque', 'mythe', 'vrai', 'faux',
+            // Greetings & common phrases
+            'bonjour', 'bonsoir', 'salut', 'coucou', 'merci', 'aidez',
+            "s'il vous", 'pouvez', 'comment', 'est-ce que', "qu'est",
+            'je veux', "j'ai", 'je suis', 'on dit que',
+
+            // Breast / cancer
+            'cancer du sein', 'les seins', 'sein', 'mamelon', 'tumeur',
+
+            // Symptoms
+            'symptômes', 'signes', 'bosse', 'boule', 'grosseur', 'douleur',
+            'écoulement', 'rougeur', 'gonflement', 'ganglion', 'aisselle',
+            'masse', 'bénin', 'malin',
+
+            // Risk & prevention
+            'facteurs', 'risque', 'prévention', 'prévenir', 'éviter',
+            'antécédents', 'génétique', 'obésité', 'alcool', 'hormones',
+            'protéger',
+
+            // Screening
+            'dépistage', 'mammographie', 'échographie', 'examen',
+            'détection précoce', 'quand consulter',
+
+            // Treatment
+            'traitement', 'guérir', 'guérison', 'chirurgie', 'chimiothérapie',
+            'radiothérapie', 'hormonothérapie', 'rémission', 'stade',
+            'métastase', 'effets secondaires', 'espoir',
+
+            // Health system
+            'médecin', 'hôpital', 'santé', 'centre de santé', 'orientation',
+            'assurance', 'gratuit',
+
+            // Breastfeeding
+            'allaitement', 'allaiter', 'enceinte', 'grossesse', 'bébé',
+            'nourrisson',
+
+            // Myths
+            'mythe', 'vrai', 'faux', 'contagieux', 'rumeur', 'déodorant',
+            'soutien-gorge', 'médecine traditionnelle',
         ];
         foreach ($frWords as $w) {
             if (str_contains($lower, $w)) return 'fr';

@@ -15,7 +15,7 @@ class AssistController extends Controller
         ]);
 
         $message = trim($request->message);
-        $mlServiceUrl = env('ML_SERVICE_URL', 'http://localhost:8001');
+        $mlServiceUrl = env('ML_SERVICE_URL', 'https://breast-canserscreening-production-950a.up.railway.app');
 
         // Cache common questions for 1 hour
         // Normalize: lowercase + trim for better cache hits

@@ -26,7 +26,7 @@ class ScreeningController extends Controller
         $cacheKey = 'assess_' . md5(json_encode($validated));
 
         $result = Cache::remember($cacheKey, 60 * 60 * 24, function () use ($validated) {
-            $mlServiceUrl = env('ML_SERVICE_URL', 'http://localhost:8001');
+            $mlServiceUrl = env('ML_SERVICE_URL', 'https://breast-canserscreening-production-950a.up.railway.app');
             $response = Http::timeout(30)->post("{$mlServiceUrl}/assess", $validated);
 
             if (!$response->successful()) {

@@ -16,7 +16,7 @@ class ImageController extends Controller
         ]);
 
         $imageFile = $request->file('image');
-        $mlServiceUrl = env('ML_SERVICE_URL', 'http://localhost:8001');
+        $mlServiceUrl = env('ML_SERVICE_URL', 'https://breast-canserscreening-production-950a.up.railway.app');
 
         // Cache key from image content hash (same image = same prediction)
         $imageHash = md5_file($imageFile->getRealPath());

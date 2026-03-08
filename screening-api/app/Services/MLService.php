@@ -11,7 +11,7 @@ class MLService
 
     public function __construct()
     {
-        $this->baseUrl = env('ML_SERVICE_URL', 'http://localhost:8001');
+        $this->baseUrl = env('ML_SERVICE_URL', 'https://breast-canserscreening-production-950a.up.railway.app');
     }
 
     public function predict(string $filePath): ?array

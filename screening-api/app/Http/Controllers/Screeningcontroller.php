@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use App\Models\Prediction;
 
-class ScreeningController extends Controller
+class ScreeningConroller extends Controller
 {
     public function assess(Request $request)
     {

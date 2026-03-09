@@ -18,7 +18,7 @@ An AI-powered mobile screening and awareness system for early breast cancer dete
 ## GitHub Repository
 
 🔗 https://github.com/cyiza22/Breast-canser_screening.git
-🔗 https://github.com/cyiza22/MamaCare.git(frontEnd)
+🔗 https://github.com/cyiza22/MamaCare.git(Mobile app)
 
 ---
 

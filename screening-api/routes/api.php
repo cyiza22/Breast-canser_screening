@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AssistController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ImageController;

@@ -2,32 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Cache;
+use App\Http\Requests\ScreeningRequest;
 use App\Models\Prediction;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class ScreeningController extends Controller
 {
-    public function assess(Request $request)
+    public function assess(ScreeningRequest $request)
     {
-        $validated = $request->validate([
-            'age'              => 'required|integer|min:18|max:100',
-            'family_history'   => 'required|in:none,distant,mother_sister,multiple',
-            'age_first_period' => 'required|integer|min:8|max:20',
-            'age_first_birth'  => 'required|in:before_20,20_to_29,after_30,no_children',
-            'previous_biopsy'  => 'required|in:yes,no',
-            'lump_detected'    => 'required|in:yes,no',
-            'skin_changes'     => 'required|in:yes,no',
-            'nipple_discharge' => 'required|in:yes,no',
-            'breast_pain'      => 'required|in:yes,no',
-        ]);
+        
+        $cacheKey = 'assess_' . md5(json_encode($request));
 
-        $cacheKey = 'assess_' . md5(json_encode($validated));
-
-        $result = Cache::remember($cacheKey, 60 * 60 * 24, function () use ($validated) {
+        $result = Cache::remember($cacheKey, 60 * 60 * 24, function () use ($request) {
             $mlServiceUrl = env('ML_SERVICE_URL', 'https://breast-canserscreening-production-950a.up.railway.app');
-            $response = Http::timeout(30)->post("{$mlServiceUrl}/assess", $validated);
+            $response = Http::timeout(30)->post("{$mlServiceUrl}/assess", $request);
 
             if (!$response->successful()) {
                 throw new \Exception('ML error: ' . $response->body());

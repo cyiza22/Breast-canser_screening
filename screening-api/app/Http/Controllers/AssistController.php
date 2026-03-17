@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Services\ChatService;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class AssistController extends Controller
 {

@@ -8,11 +8,10 @@ use Illuminate\Support\Facades\Request;
 
 class AssistController extends Controller
 {
-    protected $chatService;
 
-    public function __construct(ChatService $chatService)
+    public function __construct(protected ChatService $chatService)
     {
-        $this->chatService = $chatService;
+       
     }
 
     public function assist(Request $request)

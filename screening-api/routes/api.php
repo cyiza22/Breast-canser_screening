@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HealthController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\AssistController;
 use App\Http\Controllers\ScreeningController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

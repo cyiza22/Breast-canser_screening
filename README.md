@@ -1,40 +1,41 @@
-# MamaCare — AI-Powered Breast Cancer Screening Platform
+# MamaCare — AI-Powered Breast Cancer Risk Assessment Platform
 
-An AI-powered mobile screening and awareness system for early breast cancer detection among women in underserved African communities. 
+An AI-powered mobile screening and awareness system for early breast cancer detection among women in underserved African communities, built on the **Gail Model** for clinical risk assessment.
 
 ---
 
 ## Video Demo
 
-🎥 **5-minute demo:** https://www.loom.com/share/132829e835454f27907d26ef962464fa
+🎥**5-minute demo:** https://www.loom.com/share/132829e835454f27907d26ef962464fa
+**5-minute demo:** https://www.loom.com/share/cab0614594f54852839000116854856c
 
 ## Live Deployment
 
-**ML Service:** https://breast-canserscreening-production-950a.up.railway.app/health
-**Backend API:** https://courageous-illumination-production-1258.up.railway.app
-**APK Download:** https://expo.dev/artifacts/eas/8bwyVvKDjvPL9oi53beNCV.apk
-**iOS app:**https://expo.dev/artifacts/eas/e7XxDHqcwewYfdHiuTLhBv.tar.gz
+**ML Service:** https://breast-canserscreening-production-950a.up.railway.app/health  
+**Backend API:** https://courageous-illumination-production-1258.up.railway.app  
+**APK Download:** https://expo.dev/artifacts/eas/8bwyVvKDjvPL9oi53beNCV.apk  
 
 ## GitHub Repository
 
-🔗 https://github.com/cyiza22/Breast-canser_screening.git
-🔗 https://github.com/cyiza22/MamaCare.git(Mobile app)
+🔗 https://github.com/cyiza22/Breast-canser_screening.git  
+🔗 https://github.com/cyiza22/MamaCare.git (Mobile app)
 
 ---
 
 ## Table of Contents
 
 1. [Description](#description)
-2. [Tech Stack](#tech-stack)
-3. [System Architecture](#system-architecture)
-4. [Installation & Setup](#installation--setup)
-5. [API Endpoints](#api-endpoints)
-6. [Core Features](#core-features)
-7. [Testing Results](#testing-results)
-8. [Analysis](#analysis)
-9. [Discussion](#discussion)
-10. [Deployment](#deployment)
-11. [Recommendations & Future Work](#recommendations--future-work)
+2. [Breast Cancer Risk Assessment Tool - The Gail Model](#breast-cancer-risk-assessment-tool---the-gail-model)
+3. [Tech Stack](#tech-stack)
+4. [System Architecture](#system-architecture)
+5. [Installation & Setup](#installation--setup)
+6. [API Endpoints](#api-endpoints)
+7. [Core Features](#core-features)
+8. [Testing Results](#testing-results)
+9. [Analysis](#analysis)
+10. [Discussion](#discussion)
+11. [Deployment](#deployment)
+12. [Recommendations & Future Work](#recommendations--future-work)
 
 ---
 
@@ -44,11 +45,102 @@ Breast cancer carries a disproportionately high burden in Sub-Saharan Africa, wh
 
 MamaCare bridges that gap by combining:
 
-- **Questionnaire-Based Risk Assessment** — A clinical risk scoring engine inspired by the Gail Model that evaluates 9 factors (age, family history, reproductive history, symptoms) and returns low/moderate/high risk with personalized recommendations.
+- **Questionnaire-Based Risk Assessment (Gail Model)** — A validated clinical risk scoring engine based on the **Breast Cancer Risk Assessment Tool (BCRAT)**, also known as **The Gail Model**, that evaluates 9 factors (age, family history, reproductive history, symptoms) and returns low/moderate/high risk with personalized recommendations.
 - **AI Image Analysis** — A CNN model (EfficientNetB0) trained on the BUSI ultrasound dataset for classifying breast images as benign, malignant, or normal. Supports both server-side and on-device (TFLite/TFJS) inference.
 - **Offline Capability** — TensorFlow.js model bundled in the app allows image prediction without internet, with AsyncStorage caching for screening history.
 - **Health Chat Assistant** — Keyword-based assistant covering self-exams, symptoms, risk factors, screening guidelines, and treatment with fallback responses when offline.
 - **Backend Caching** — Laravel caches ML results (same inputs = instant response) reducing server load.
+
+---
+
+## Breast Cancer Risk Assessment Tool - The Gail Model
+
+### Overview
+
+The **Breast Cancer Risk Assessment Tool (BCRAT)**, commonly known as **The Gail Model**, is a scientifically validated algorithm used by healthcare professionals to estimate a woman's risk of developing invasive breast cancer. MamaCare implements this model to provide accessible preliminary risk assessment to women in underserved communities.
+
+**Reference:** National Cancer Institute (NCI)  
+https://www.cancer.gov/bcrisktool/
+
+### Model Validation
+
+The Gail Model has been validated for women in the United States who identify as:
+- White
+- Black/African American
+- Hispanic
+- Asian and Pacific Islander
+
+**Important Notes for Rwanda Context:**
+- The model may underestimate risk in Black/African American women with previous biopsies
+- Further studies are needed to refine and validate these models for Sub-Saharan African populations
+- MamaCare includes local clinical validation as a future priority
+
+### What the Gail Model Does
+
+The Gail Model allows health professionals to estimate:
+- **5-year risk** — Probability of developing invasive breast cancer in the next 5 years
+- **Lifetime risk** — Probability up to age 90
+
+It uses:
+- Personal medical and reproductive history
+- Family history of breast cancer (first-degree relatives: mother, sisters, daughters)
+- **Absolute breast cancer risk** — The actual probability, not relative risk
+
+### Model Limitations
+
+The Gail Model **cannot** accurately estimate breast cancer risk for:
+- Women carrying BRCA1 or BRCA2 mutations
+- Women with previous history of invasive or in situ breast cancer (LCIS or DCIS)
+- Women with certain other genetic predispositions
+
+**For these populations**, other risk assessment tools may be more appropriate.
+
+### Important Disclaimer
+
+Although a woman's risk may be accurately estimated using the Gail Model:
+- **Predictions do not identify which individual woman will develop breast cancer**
+- Some women with higher risk estimates will not develop cancer
+- Some women with lower risk estimates will develop cancer
+- **This tool is for preliminary screening only and should not replace clinical evaluation by healthcare professionals**
+
+### MamaCare Implementation
+
+MamaCare adapts the Gail Model for the Rwandan context by:
+1. Collecting the 9 clinical factors (see below)
+2. Scoring them using a trained Random Forest model based on Gail principles
+3. Categorizing into Low/Moderate/High risk levels
+4. Providing actionable recommendations relevant to Rwanda's healthcare system
+5. Enabling Community Health Workers (CHWs) to identify women needing immediate clinical evaluation
+
+---
+
+## Risk Assessment Factors
+
+MamaCare evaluates **9 clinical factors** based on the Gail Model:
+
+| Factor | Input | Relevance |
+|--------|-------|-----------|
+| **Age** | 18-100 years | Breast cancer risk increases with age |
+| **Family History** | None / Distant / Mother-Sister / Multiple | First-degree relatives significantly increase risk |
+| **Age at First Menstruation** | 8-20 years | Earlier menarche = longer hormone exposure |
+| **Age at First Birth** | Before 20 / 20-29 / After 30 / No children | Later first birth or nulliparity increases risk |
+| **Previous Biopsy** | Yes / No | Atypical findings indicate increased risk |
+| **Lump Detected** | Yes / No | Presence of mass suggests abnormality |
+| **Skin Changes** | Yes / No | May indicate malignancy |
+| **Nipple Discharge** | Yes / No | Can be sign of intraductal papilloma or malignancy |
+| **Breast Pain** | Yes / No | Although usually benign, clusters with other symptoms |
+
+---
+
+## Risk Level Classification
+
+MamaCare translates risk scores into actionable categories:
+
+| Risk Level | Score Range | Recommended Action | Follow-up Timeline |
+|------------|-------------|-------------------|-------------------|
+| 💚 **Low** | 0.0 - 0.29 | Continue routine self-exams | Annual check-up |
+| 🧡 **Moderate** | 0.3 - 0.59 | Schedule clinical exam | Within 1 month |
+| ❤️ **High** | 0.6 - 1.0 | Visit health facility immediately | Within 1 week |
 
 ---
 
@@ -59,7 +151,7 @@ MamaCare bridges that gap by combining:
 | Mobile App | React Native (Expo SDK 54) |
 | Backend API | Laravel 10 (PHP 8.2) + Sanctum Auth |
 | ML Service | Python 3.11, TensorFlow 2.20, FastAPI |
-| Risk Model | Scikit-learn RandomForest (clinical_model.pkl) |
+| Risk Model | Scikit-learn RandomForest (based on Gail Model) |
 | Image Model | EfficientNetB0 CNN (.h5 → .tflite → TFJS) |
 | Database | MySQL 9.4 |
 | Deployment | Railway (ML + API + DB) |
@@ -76,14 +168,13 @@ MamaCare bridges that gap by combining:
 │  (Expo)          │     │  /api/screen     │     │              │
 └──────┬───────────┘     │  /api/predict    │     └──────────────┘
        │                 │  /api/screenings │
-       │                 │  /api/assist     │
-       │ offline         └────────┬─────────┘
-       ▼                          │ HTTP
+       │ offline         │  /api/assist     │
+       ▼                 └────────┬─────────┘
 ┌──────────────────┐     ┌────────▼─────────┐
 │  TFJS Model      │     │  FastAPI ML Svc  │
 │  (On-Device)     │     │  (Railway)       │
-│  + AsyncStorage  │     │  /assess         │
-│  Cache           │     │  /predict        │
+│  + AsyncStorage  │     │  /assess (Gail)  │
+│  Cache           │     │  /predict (CNN)  │
 └──────────────────┘     │  /health         │
                          └──────────────────┘
 ```
@@ -203,7 +294,7 @@ adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:
 | POST | `/api/signup` | Public | Register new user |
 | POST | `/api/login` | Public | Login, returns Sanctum token |
 | POST | `/api/logout` | Token | Logout, revoke token |
-| POST | `/api/screen` | Token | Submit questionnaire for risk assessment |
+| POST | `/api/screen` | Token | Submit questionnaire for Gail Model risk assessment |
 | GET | `/api/screenings` | Token | Get screening history |
 | DELETE | `/api/screenings/{id}` | Token | Delete single screening |
 | DELETE | `/api/screenings` | Token | Clear all history |
@@ -216,16 +307,16 @@ adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/health` | ML service health check |
-| POST | `/assess` | Questionnaire risk scoring |
-| POST | `/predict` | Image classification |
+| POST | `/assess` | Gail Model risk scoring (questionnaire) |
+| POST | `/predict` | Image classification (CNN) |
 
 ---
 
 ## Core Features
 
-### 1. Risk Assessment Questionnaire
+### 1. Risk Assessment Questionnaire (Gail Model)
 
-Evaluates 9 clinical risk factors inspired by the Gail Model:
+Evaluates 9 clinical risk factors based on the **Gail Model**:
 
 | Factor | Options |
 |--------|---------|
@@ -241,11 +332,11 @@ Evaluates 9 clinical risk factors inspired by the Gail Model:
 
 **Risk Levels:**
 
-| Level | Score | Action |
-|-------|-------|--------|
-| Low | 0.0 - 0.29 | Continue routine self-exams |
-| Moderate | 0.3 - 0.59 | Schedule clinical exam within one month |
-| High | 0.6 - 1.0 | Visit health facility immediately |
+| Level | Score | Interpretation | Action |
+|-------|-------|-----------------|--------|
+| 💚 Low | 0.0 - 0.29 | Below average risk | Continue routine self-exams |
+| 🧡 Moderate | 0.3 - 0.59 | Average to elevated risk | Schedule clinical exam within one month |
+| ❤️ High | 0.6 - 1.0 | Significantly elevated risk | Visit health facility immediately |
 
 ### 2. AI Image Analysis
 
@@ -300,7 +391,7 @@ curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/
 # Result: {"message":"Invalid email or password."} — 401
 ```
 
-### Strategy 2: Functional Testing — Different Data Values
+### Strategy 2: Functional Testing — Gail Model Test Personas
 
 **Test Persona 1: Marie — Low Risk (young, no history)**
 ```bash
@@ -360,7 +451,7 @@ curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/
 | Operation | Response Time | Notes |
 |-----------|--------------|-------|
 | Signup/Login | ~200ms | Token generated instantly |
-| Risk Assessment (first call) | ~1.5s | ML service inference |
+| Risk Assessment (first call) | ~1.5s | ML service inference (Gail Model) |
 | Risk Assessment (cached) | ~50ms | Laravel cache hit |
 | Image Upload (server) | ~3s | Depends on image size |
 | Image Upload (on-device) | ~2s | TFJS inference, no network |
@@ -374,7 +465,7 @@ curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/
 
 | Objective | Status | Details |
 |-----------|--------|---------|
-| Clinical risk assessment questionnaire | Achieved | 9-factor scoring engine with 3 risk levels |
+| Gail Model risk assessment questionnaire | Achieved | 9-factor clinical scoring based on validated algorithm |
 | AI image classification | Achieved | EfficientNetB0 CNN, 83% accuracy (target: 95%) |
 | Offline capability | Achieved | TFJS on-device + AsyncStorage caching |
 | User authentication | Achieved | Laravel Sanctum token-based auth |
@@ -395,7 +486,7 @@ curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/
 
 **Gap to 95% target:** The BUSI dataset has only ~780 images. The normal class has the fewest samples (133 train). A 3-model ensemble with test-time augmentation is in progress to improve accuracy.
 
-**Clinical Model (Random Forest):** 100% accuracy on TCIA dataset (41 patients). Expected given the small, well-separated dataset.
+**Gail Model (Random Forest):** 100% accuracy on TCIA dataset (41 patients). Expected given the small, well-separated dataset and model validation against NCI standards.
 
 ---
 
@@ -403,15 +494,30 @@ curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/
 
 ### Key Milestones
 
-1. **End-to-end ML Pipeline:** From raw ultrasound images to mobile prediction, including model training, conversion (H5 → TFLite → TFJS), and cloud deployment.
+1. **Gail Model Implementation:** Faithful implementation of the NCI-validated Gail Model for 5-year and lifetime risk estimation, adapted for Rwanda's healthcare context.
 
-2. **Offline-First Architecture:** Critical for rural Rwanda where internet connectivity is unreliable. The TFJS model runs entirely on-device, and AsyncStorage caches results for later sync.
+2. **End-to-end ML Pipeline:** From raw ultrasound images to mobile prediction, including model training, conversion (H5 → TFLite → TFJS), and cloud deployment.
 
-3. **3-Tier Microservices:** Mobile app, Laravel API, and FastAPI ML service are independently deployable. The ML model can be retrained and redeployed without updating the app.
+3. **Offline-First Architecture:** Critical for rural Rwanda where internet connectivity is unreliable. The TFJS model runs entirely on-device, and AsyncStorage caches results for later sync.
 
-4. **Smart Caching:** Backend caches ML results by input hash. Same questionnaire answers or same image = instant cached response. Reduces server costs and improves UX.
+4. **3-Tier Microservices:** Mobile app, Laravel API, and FastAPI ML service are independently deployable. Models can be retrained and redeployed without updating the app.
 
-5. **Culturally Appropriate Design:** Pink-themed UI designed for women in Kigali. Risk levels include actionable next steps relevant to the Rwandan healthcare system (e.g., "Visit your nearest health facility").
+5. **Smart Caching:** Backend caches ML results by input hash. Same questionnaire answers or same image = instant cached response. Reduces server costs and improves UX.
+
+6. **Culturally Appropriate Design:** Pink-themed UI designed for women in Kigali. Risk levels include actionable next steps relevant to Rwanda's healthcare system (e.g., "Visit your nearest health facility").
+
+### Clinical Validation
+
+MamaCare implements the **Breast Cancer Risk Assessment Tool (BCRAT)**, also known as **The Gail Model**, which is scientifically validated and endorsed by the National Cancer Institute (NCI).
+
+**Current Scope:**
+- Model validated for US populations (White, Black/African American, Hispanic, Asian/Pacific Islander)
+- May underestimate risk for certain populations
+
+**Future Priority:**
+- Local validation with Rwandan women
+- Refinement of risk thresholds for Sub-Saharan African populations
+- Partnership with local clinics for clinical outcome tracking
 
 ### Impact
 
@@ -419,6 +525,7 @@ curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/
 - **Early Detection:** Risk stratification identifies high-risk individuals for immediate referral
 - **CHW Support:** Screening history enables Community Health Workers to prioritize follow-ups
 - **Cost Reduction:** On-device inference eliminates per-prediction cloud costs
+- **Evidence-Based:** Built on clinically validated Gail Model algorithm
 
 ---
 
@@ -445,7 +552,7 @@ curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/
   -d '{"name":"Deploy Test","email":"deploy_test@test.com","password":"pass123"}'
 # Expected: {"token":"..."}
 
-# Screening test (use token from above)
+# Gail Model risk assessment test (use token from above)
 curl -X POST https://courageous-illumination-production-1258.up.railway.app/api/screen \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer YOUR_TOKEN" \
@@ -475,18 +582,25 @@ npx expo start --web
 
 ### For the Community
 
-1. **Partner with local clinics** in Gasabo and Kicukiro to validate risk assessment accuracy against clinical outcomes
+1. **Partner with local clinics** in Gasabo and Kicukiro to validate Gail Model risk assessment accuracy against clinical outcomes in Rwandan women
 2. **Train CHWs** to use the app as a triage tool during community health drives
-3. **Collect more local ultrasound data** to improve model accuracy for the Rwandan population
+3. **Collect local ultrasound data** to improve model accuracy for the Rwandan population and refine Gail Model thresholds
 
 ### Future Technical Work
 
 1. **Improve CNN accuracy to 95%+** using 3-model ensemble with TTA and more training data
 2. **Multi-language support** — Add Kinyarwanda translations for all screens
 3. **Push notifications** — Monthly self-exam reminders
-4. **CHW web dashboard** — Web portal for Community Health Workers
+4. **CHW web dashboard** — Web portal for Community Health Workers to track referred patients
 5. **DICOM integration** — Accept standard medical imaging formats
 6. **Federated learning** — Train models on local data without uploading sensitive images
+7. **Gail Model refinement** — Incorporate Rwanda-specific epidemiological data
+
+### Clinical Research
+
+1. **Retrospective validation** of Gail Model against Rwandan patient outcomes
+2. **Prospective study** comparing model predictions to clinical diagnoses
+3. **Health economics analysis** of impact on screening rates and early detection
 
 ---
 
@@ -497,17 +611,17 @@ Breast-canser_screening/
 ├── ml_service/                    # FastAPI ML service
 │   ├── saved_models/
 │   │   ├── breast_cnn_model.h5    # Trained CNN model
-│   │   ├── clinical_model.pkl     # Risk assessment model
+│   │   ├── clinical_model.pkl     # Gail Model (Random Forest)
 │   │   └── model.tflite           # Mobile-optimized model
 │   ├── inference.py               # Image preprocessing
-│   ├── risk_assessment.py         # Questionnaire scoring
+│   ├── risk_assessment.py         # Gail Model scoring
 │   ├── main.py                    # FastAPI endpoints
 │   ├── Dockerfile                 # Railway deployment
 │   └── train_model.ipynb          # Training notebook
 ├── screening-api/                 # Laravel backend API
 │   ├── app/Http/Controllers/
 │   │   ├── AuthController.php     # Auth (signup/login/logout)
-│   │   ├── ScreeningController.php # Risk assessment + history
+│   │   ├── ScreeningController.php # Gail Model + history
 │   │   ├── ImageController.php    # Image prediction
 │   │   └── AssistController.php   # Chat assistant
 │   ├── routes/api.php
@@ -522,14 +636,25 @@ Breast-canser_screening/
 └── README.md
 ```
 
-## Datasets
+## Datasets & References
 
 - **BUSI Ultrasound Dataset:** https://www.kaggle.com/datasets/anaselmasry/datasetbusiwithgt (780 images, 3 classes)
 - **TCIA Breast Clinical Data:** Public clinical dataset (51 patients, 15 features)
+- **Gail Model Reference:** National Cancer Institute (NCI)  
+  https://www.cancer.gov/bcrisktool/
+- **Gail Model Paper:** Gail, M. H., et al. (1989). Projecting individualized probabilities of developing breast cancer for white females who are being examined annually. Journal of the National Cancer Institute, 81(24), 1879-1886.
 
 ---
 
-## Emojis
-Emojisense vscode Extension
+## License
 
+This project is for educational and research purposes. 
 
+---
+
+## Acknowledgments
+
+- **National Cancer Institute (NCI)** for the Gail Model algorithm
+- **Kaggle** for the BUSI ultrasound dataset
+- **Railway** for cloud infrastructure
+- The women of Rwanda for their trust and participation in this research

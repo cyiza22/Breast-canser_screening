@@ -138,9 +138,9 @@ MamaCare translates risk scores into actionable categories:
 
 | Risk Level | Score Range | Recommended Action | Follow-up Timeline |
 |------------|-------------|-------------------|-------------------|
-| 💚 **Low** | 0.0 - 0.29 | Continue routine self-exams | Annual check-up |
-| 🧡 **Moderate** | 0.3 - 0.59 | Schedule clinical exam | Within 1 month |
-| ❤️ **High** | 0.6 - 1.0 | Visit health facility immediately | Within 1 week |
+| **Low** | 0.0 - 0.29 | Continue routine self-exams | Annual check-up |
+| **Moderate** | 0.3 - 0.59 | Schedule clinical exam | Within 1 month |
+| **High** | 0.6 - 1.0 | Visit health facility immediately | Within 1 week |
 
 ---
 

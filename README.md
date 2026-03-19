@@ -14,7 +14,7 @@ An AI-powered mobile screening and awareness system for early breast cancer dete
 
 **ML Service:** https://breast-canserscreening-production-950a.up.railway.app/health  
 **Backend API:** https://courageous-illumination-production-1258.up.railway.app  
-**APK Download:** https://expo.dev/artifacts/eas/8bwyVvKDjvPL9oi53beNCV.apk  
+**APK Download:** https://expo.dev/artifacts/eas/mh5JfRKV2xkNLoZYTBP4s5.apk
 
 ## GitHub Repository
 

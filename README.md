@@ -6,8 +6,9 @@ An AI-powered mobile screening and awareness system for early breast cancer dete
 
 ## Video Demo
 
-🎥**5-minute demo:** https://www.loom.com/share/132829e835454f27907d26ef962464fa
-**5-minute demo:** https://www.loom.com/share/cab0614594f54852839000116854856c
+**5-minute demo(initial product):** https://www.loom.com/share/132829e835454f27907d26ef962464fa
+
+**5-minute demo(final product):** https://www.loom.com/share/cab0614594f54852839000116854856c
 
 ## Live Deployment
 

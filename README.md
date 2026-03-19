@@ -335,9 +335,9 @@ Evaluates 9 clinical risk factors based on the **Gail Model**:
 
 | Level | Score | Interpretation | Action |
 |-------|-------|-----------------|--------|
-| 💚 Low | 0.0 - 0.29 | Below average risk | Continue routine self-exams |
-| 🧡 Moderate | 0.3 - 0.59 | Average to elevated risk | Schedule clinical exam within one month |
-| ❤️ High | 0.6 - 1.0 | Significantly elevated risk | Visit health facility immediately |
+| Low | 0.0 - 0.29 | Below average risk | Continue routine self-exams |
+| Moderate | 0.3 - 0.59 | Average to elevated risk | Schedule clinical exam within one month |
+| High | 0.6 - 1.0 | Significantly elevated risk | Visit health facility immediately |
 
 ### 2. AI Image Analysis
 
